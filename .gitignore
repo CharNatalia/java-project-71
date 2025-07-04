@@ -42,4 +42,11 @@ bin/
 ### Mac OS ###
 .DS_Store
 
+# JaCoCo reports
+/build/
+/**/build/
+*.exec
+*.ec
+jacoco*.xml
+
 

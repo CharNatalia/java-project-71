@@ -49,4 +49,8 @@ tasks.jacocoTestReport {
     }
 }
 
-
+sonarqube {
+    properties {
+        property("sonar.coverage.jacoco.xmlReportPaths", "$buildDir/reports/jacoco/test/jacocoTestReport.xml")
+    }
+}
