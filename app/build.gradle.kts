@@ -3,6 +3,7 @@ plugins {
     id("java")
     id("com.github.ben-manes.versions") version "0.51.0"
     application
+    checkstyle
 }
 
 group = "hexlet.code"
@@ -26,4 +27,10 @@ tasks.test {
 application {
     mainClass = "hexlet.code.App"
 }
+
+checkstyle {
+    toolVersion = "10.12.4"
+    configFile = file("$rootDir/config/checkstyle/checkstyle.xml")
+}
+
 
