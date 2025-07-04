@@ -4,6 +4,7 @@ plugins {
     id("com.github.ben-manes.versions") version "0.51.0"
     application
     checkstyle
+    jacoco
     id("org.sonarqube") version "6.2.0.5505"
 }
 
@@ -39,6 +40,12 @@ sonar {
         property("sonar.projectKey", "CharNatalia_java-project-71")
         property("sonar.organization", "charnatalia")
         property("sonar.host.url", "https://sonarcloud.io")
+    }
+}
+
+tasks.jacocoTestReport {
+    reports {
+        xml.required.set(true)
     }
 }
 
