@@ -4,6 +4,7 @@ plugins {
     id("com.github.ben-manes.versions") version "0.51.0"
     application
     checkstyle
+    id("org.sonarqube") version "6.2.0.5505"
 }
 
 group = "hexlet.code"
@@ -31,6 +32,14 @@ application {
 checkstyle {
     toolVersion = "10.12.4"
     configFile = file("$rootDir/config/checkstyle/checkstyle.xml")
+}
+
+sonar {
+    properties {
+        property("sonar.projectKey", "CharNatalia_java-project-71")
+        property("sonar.organization", "charnatalia")
+        property("sonar.host.url", "https://sonarcloud.io")
+    }
 }
 
 
