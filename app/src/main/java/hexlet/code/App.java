@@ -1,6 +1,5 @@
 package hexlet.code;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
@@ -9,10 +8,7 @@ import picocli.CommandLine.Parameters;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Map;
 import java.util.concurrent.Callable;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import static hexlet.code.Differ.generate;
 
@@ -54,13 +50,8 @@ public class App implements Callable<Integer> {
 
         String jsonFile1 = Files.readString(path1);
         String jsonFile2 = Files.readString(path2);
-        ObjectMapper objectMapper = new ObjectMapper();
 
-        Map<String, Object> mapFile1
-                = objectMapper.readValue(jsonFile1, new TypeReference<Map<String, Object>>() { });
-        Map<String, Object> mapFile2
-                = objectMapper.readValue(jsonFile2, new TypeReference<Map<String, Object>>() { });
-        System.out.println(generate(mapFile1, mapFile2));
+        System.out.println(generate(jsonFile1, jsonFile2));
         return 0;
     }
 }

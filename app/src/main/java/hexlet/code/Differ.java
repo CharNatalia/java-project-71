@@ -1,5 +1,8 @@
 package hexlet.code;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -12,7 +15,14 @@ public class Differ {
     //если ключ есть и значение такое же, то просто вывод
     //если осталось не проверенное значение, то -
 
-    public static String generate(Map<String, Object> previousFile, Map<String, Object> currentFile) {
+    public static String generate(String jsonFile1, String jsonFile2) throws Exception {
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        Map<String, Object> previousFile
+                = objectMapper.readValue(jsonFile1, new TypeReference<Map<String, Object>>() { });
+        Map<String, Object> currentFile
+                = objectMapper.readValue(jsonFile2, new TypeReference<Map<String, Object>>() { });
+
         List<DiffDTO> difference = new ArrayList<>();
         for (var line : currentFile.entrySet()) {
             if (previousFile.get(line.getKey()) == null) {
@@ -21,8 +31,8 @@ public class Differ {
                 difference.add(new DiffDTO(" ", line.getKey() + ": " + line.getValue()));
             } else {
                 difference.add(new DiffDTO("-",
-                        line.getKey() + ": " + line.getValue() + "\n"
-                                + "+ " + line.getKey() + ": " + previousFile.get(line.getKey())));
+                        line.getKey() + ": " + previousFile.get(line.getKey()) + "\n"
+                                + "+ " + line.getKey() + ": " + line.getValue()));
             }
         }
 
