@@ -5,9 +5,7 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.util.Map;
 import java.util.concurrent.Callable;
 
 import static hexlet.code.Differ.generate;
@@ -27,31 +25,20 @@ public class App implements Callable<Integer> {
     }
 
     @Parameters(index = "0", description = "path to first file")
-    private String filepath1 = "file1.json";
+    private String filepath1;
 
     @Parameters(index = "1", description = "path to second file")
-    private String filepath2 = "file2.json";
+    private String filepath2;
 
     @Option(names = {"-f", "--format"}, description = "output format [default: stylish]")
-    private String format = ".json";
+    private String format;
 
     @Override
     public Integer call() throws Exception {
-        Path path1 = Paths.get(filepath1).toAbsolutePath().normalize();
-        Path path2 = Paths.get(filepath2).toAbsolutePath().normalize();
+        Map<String, Object> previousFile = Parser.parse(filepath1);
+        Map<String, Object> currentFile = Parser.parse(filepath2);
 
-        if (!Files.exists(path1)) {
-            throw new Exception("File '" + path1 + "' does not exist");
-        }
-
-        if (!Files.exists(path2)) {
-            throw new Exception("File '" + path2 + "' does not exist");
-        }
-
-        String jsonFile1 = Files.readString(path1);
-        String jsonFile2 = Files.readString(path2);
-
-        System.out.println(generate(jsonFile1, jsonFile2));
+        System.out.println(generate(previousFile, currentFile));
         return 0;
     }
 }

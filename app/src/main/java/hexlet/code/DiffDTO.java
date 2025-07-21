@@ -1,4 +1,23 @@
 package hexlet.code;
 
-public record DiffDTO(String lineIndicator, String keyAndValue) {
+public record DiffDTO(LineIndicator lineIndicator, String key, Object value) {
+    public enum LineIndicator {
+        ADDED("+"),
+        DELETED("-"),
+        NOCHANGES(" ");
+
+        private final String indicator;
+
+        LineIndicator(String indicator) {
+            this.indicator = indicator;
+        }
+
+        public String getIndicator() {
+            return indicator;
+        }
+    }
+    @Override
+    public String toString() {
+        return lineIndicator.getIndicator() + " " + key + ": " + value;
+    }
 }
