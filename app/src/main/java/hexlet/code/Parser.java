@@ -34,12 +34,12 @@ public class Parser {
         throw new Exception("Unknown format");
     }
 
-    public static Map<String, Object> jsonParser(String jsonFile) throws Exception{
+    public static Map<String, Object> jsonParser(String jsonFile) throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.readValue(jsonFile, new TypeReference<>() { });
     }
 
-    public static Map<String, Object> yamlParser(String yamlFile) throws Exception{
+    public static Map<String, Object> yamlParser(String yamlFile) throws Exception {
         ObjectMapper objectMapper = new ObjectMapper(new YAMLFactory());
         return objectMapper.readValue(yamlFile, new TypeReference<>() { });
     }
