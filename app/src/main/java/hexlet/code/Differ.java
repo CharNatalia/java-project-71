@@ -10,7 +10,7 @@ import java.util.Objects;
 import static hexlet.code.DiffDTO.LineIndicator.ADDED;
 import static hexlet.code.DiffDTO.LineIndicator.DELETED;
 import static hexlet.code.DiffDTO.LineIndicator.NOCHANGES;
-import static hexlet.code.Formatter.stylish;
+import static hexlet.code.Formatter.format;
 
 public class Differ {
     //если искомого ключа нет, то +
@@ -18,7 +18,11 @@ public class Differ {
     //если ключ есть и значение такое же, то просто вывод
     //если осталось не проверенное значение, то -
 
-    public static String generate(Map<String, Object> previousFile, Map<String, Object> currentFile) {
+    public static String generate(
+            Map<String, Object> previousFile,
+            Map<String, Object> currentFile,
+            String formatName
+    ) {
         List<DiffDTO> difference = new ArrayList<>();
 
         for (var currentKeyAndValue : currentFile.entrySet()) {
@@ -45,6 +49,6 @@ public class Differ {
                                 previousKeyAndValue.getValue()))
                 .toList());
         difference.sort(Comparator.comparing(DiffDTO::key));
-        return stylish(difference);
+        return format(formatName, difference);
     }
 }

@@ -31,7 +31,7 @@ public class DifferTests {
         currentFile.put("verbose", true);
         currentFile.put("host", "hexlet.io");
 
-        String actual = Differ.generate(previousFile, currentFile);
+        String actual = Differ.generate(previousFile, currentFile, "");
         assertEquals(expected, actual);
     }
 
@@ -51,7 +51,7 @@ public class DifferTests {
         currentFile.put("id", null);
         currentFile.put("default", List.of("value1", "value2"));
 
-        String actual = Differ.generate(previousFile, currentFile);
+        String actual = Differ.generate(previousFile, currentFile, "");
         assertEquals(expected, actual);
     }
 }

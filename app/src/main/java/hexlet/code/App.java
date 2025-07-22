@@ -31,14 +31,14 @@ public class App implements Callable<Integer> {
     private String filepath2;
 
     @Option(names = {"-f", "--format"}, description = "output format [default: stylish]")
-    private String format;
+    private String format = "stylish";
 
     @Override
     public Integer call() throws Exception {
         Map<String, Object> previousFile = Parser.parse(filepath1);
         Map<String, Object> currentFile = Parser.parse(filepath2);
 
-        System.out.println(generate(previousFile, currentFile));
+        System.out.println(generate(previousFile, currentFile, format));
         return 0;
     }
 }

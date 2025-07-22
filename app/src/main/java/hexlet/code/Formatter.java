@@ -1,12 +1,15 @@
 package hexlet.code;
 
 import java.util.List;
-import java.util.stream.Collectors;
+
+import static hexlet.code.formatters.Plain.formatAsPlain;
+import static hexlet.code.formatters.Stylish.formatAsStylish;
 
 public class Formatter {
-    public static String stylish(List<DiffDTO> difference) {
-        return difference.stream()
-                .map(DiffDTO::toString)
-                .collect(Collectors.joining("\n"));
+    public static String format(String formatName, List<DiffDTO> difference) {
+        return switch (formatName.toLowerCase()) {
+            case "plain" -> formatAsPlain(difference);
+            default -> formatAsStylish(difference);
+        };
     }
 }

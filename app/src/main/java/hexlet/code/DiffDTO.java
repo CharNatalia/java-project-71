@@ -16,8 +16,4 @@ public record DiffDTO(LineIndicator lineIndicator, String key, Object value) {
             return indicator;
         }
     }
-    @Override
-    public String toString() {
-        return lineIndicator.getIndicator() + " " + key + ": " + value;
-    }
 }
