@@ -20,8 +20,8 @@ public class ParserTests {
                 }""";
         var actual = Parser.readFile("src/test/java/resources/file1.json");
         assertEquals(expected, actual);
-        actual = Parser.readFile("/Users/natalamuratova/java-project-71/app/src/test/java/resources/file1.json");
-        assertEquals(expected, actual);
+        //actual = Parser.readFile("/Users/natalamuratova/java-project-71/app/src/test/java/resources/file1.json");
+        //assertEquals(expected, actual);
     }
     @Test
     public  void testParseJson() throws Exception {
