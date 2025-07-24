@@ -1,4 +1,4 @@
-package io.hexlet.formatters;
+package io.hexlet;
 
 import hexlet.code.DiffDTO;
 import hexlet.code.Formatter;
@@ -18,8 +18,8 @@ public class FormatterTests {
         list.add(new DiffDTO(DiffDTO.LineIndicator.DELETED, "key2", List.of(1, 2, 3)));
         var expected = """
                 {
-                + key1: [1, 2, 3]
-                - key2: [1, 2, 3]
+                  + key1: [1, 2, 3]
+                  - key2: [1, 2, 3]
                 }""";
         var actual = Formatter.format(format, list);
         assertEquals(expected, actual);

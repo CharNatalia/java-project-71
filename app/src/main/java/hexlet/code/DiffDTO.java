@@ -2,9 +2,9 @@ package hexlet.code;
 
 public record DiffDTO(LineIndicator lineIndicator, String key, Object value) {
     public enum LineIndicator {
-        ADDED("+"),
-        DELETED("-"),
-        NOCHANGES(" ");
+        ADDED("  +"),
+        DELETED("  -"),
+        NOCHANGES("   ");
 
         private final String indicator;
 
