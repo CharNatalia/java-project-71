@@ -35,7 +35,7 @@ public class DifferTests {
         String previousFile = "src/test/java/resources/jsonFileTest1.json";
         String currentFile = "src/test/java/resources/jsonFileTest2.json";
 
-        String actual = Differ.generate(previousFile, currentFile, "");
+        String actual = Differ.generate(previousFile, currentFile);
         assertEquals(expected, actual);
     }
 }

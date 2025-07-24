@@ -13,11 +13,6 @@ import static hexlet.code.DiffDTO.LineIndicator.NOCHANGES;
 import static hexlet.code.Formatter.format;
 
 public class Differ {
-    //если искомого ключа нет, то +
-    //если ключ есть, но значение отличается -старое +новое
-    //если ключ есть и значение такое же, то просто вывод
-    //если осталось не проверенное значение, то -
-
     public static String generate(
             String filepath1,
             String filepath2,
@@ -32,17 +27,17 @@ public class Differ {
             var currentKey = currentKeyAndValue.getKey();
             var currentValue = currentKeyAndValue.getValue();
 
-            if (!previousFile.containsKey(currentKey)) { //добавлен новый ключ
+            if (!previousFile.containsKey(currentKey)) {
                 difference.add(new DiffDTO(ADDED, currentKey, currentValue));
             } else if (Objects.equals(previousFile.get(currentKey), currentValue)) {
                 difference.add(new DiffDTO(NOCHANGES, currentKey, currentValue));
-            } else { //значение ключа изменилось
+            } else {
                 var previousValue = previousFile.get(currentKey);
                 difference.add(new DiffDTO(DELETED, currentKey, previousValue));
                 difference.add(new DiffDTO(ADDED, currentKey, currentValue));
             }
         }
-        //ключ был удален
+
         difference.addAll(previousFile.entrySet().stream()
                 .filter(previousKeyAndValue ->
                         !currentFile.containsKey(previousKeyAndValue.getKey()))
@@ -53,5 +48,9 @@ public class Differ {
                 .toList());
         difference.sort(Comparator.comparing(DiffDTO::key));
         return format(formatName, difference);
+    }
+
+    public static String generate(String filepath1, String filepath2) throws Exception {
+        return generate(filepath1, filepath2, "stylish");
     }
 }

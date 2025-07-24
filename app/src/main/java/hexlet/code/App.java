@@ -31,7 +31,7 @@ public class App implements Callable<Integer> {
     private String filepath2;
 
     @Option(names = {"-f", "--format"}, description = "output format [default: stylish]")
-    private String format = "stylish";
+    private String format;
 
     @Override
     public Integer call() throws Exception {
@@ -40,8 +40,11 @@ public class App implements Callable<Integer> {
             System.out.println(readFile(filepath2));
             return 0;
         }
-
-        System.out.println(generate(filepath1, filepath2, format));
+        if (format.isEmpty()) {
+            System.out.println(generate(filepath1, filepath2));
+        } else {
+            System.out.println(generate(filepath1, filepath2, format));
+        }
         return 0;
     }
 }
