@@ -17,8 +17,10 @@ public class FormatterTests {
         list.add(new DiffDTO(DiffDTO.LineIndicator.ADDED, "key1", List.of(1, 2, 3)));
         list.add(new DiffDTO(DiffDTO.LineIndicator.DELETED, "key2", List.of(1, 2, 3)));
         var expected = """
+                {
                 + key1: [1, 2, 3]
-                - key2: [1, 2, 3]""";
+                - key2: [1, 2, 3]
+                }""";
         var actual = Formatter.format(format, list);
         assertEquals(expected, actual);
 

@@ -22,13 +22,15 @@ public class StylishTests {
         list.add(new DiffDTO(DiffDTO.LineIndicator.NOCHANGES, "key5", 1));
 
         var expected = """
+                {
                 + key1: [1, 2, 3]
                 - key2: [1, 2, 3]
                 - key3: null
                 + key3: text
                 - key4: true
                 + key4: null
-                  key5: 1""";
+                  key5: 1
+                }""";
         var actual = Stylish.formatAsStylish(list);
         assertEquals(expected, actual);
     }
