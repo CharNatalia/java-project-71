@@ -8,7 +8,6 @@ import picocli.CommandLine.Parameters;
 import java.util.concurrent.Callable;
 
 import static hexlet.code.Differ.generate;
-import static hexlet.code.Parser.readFile;
 
 
 @Command(
@@ -35,11 +34,6 @@ public class App implements Callable<Integer> {
 
     @Override
     public Integer call() throws Exception {
-        if (format.equals("json") || format.equals("yaml") || format.equals("yml")) {
-            System.out.println(readFile(filepath1));
-            System.out.println(readFile(filepath2));
-            return 0;
-        }
         if (format.isEmpty()) {
             System.out.println(generate(filepath1, filepath2));
         } else {

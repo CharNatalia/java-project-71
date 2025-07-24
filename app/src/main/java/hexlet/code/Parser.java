@@ -7,6 +7,7 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.Map;
 
 public class Parser {
@@ -32,13 +33,26 @@ public class Parser {
         return Files.readString(path);
     }
 
-    public static Map<String, Object> jsonParser(String jsonFile) throws Exception {
+    public static Map<String, Object> jsonParser(String jsonFile) {
         ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.readValue(jsonFile, new TypeReference<>() { });
+        Map<String, Object> parsedFile = new HashMap<>();
+        try {
+            parsedFile =
+                    objectMapper.readValue(jsonFile, new TypeReference<>() { });
+        } catch (Exception e) {
+            System.out.println("Невалидный json");
+        }
+        return parsedFile;
     }
 
-    public static Map<String, Object> yamlParser(String yamlFile) throws Exception {
+    public static Map<String, Object> yamlParser(String yamlFile) {
         ObjectMapper objectMapper = new ObjectMapper(new YAMLFactory());
-        return objectMapper.readValue(yamlFile, new TypeReference<>() { });
+        Map<String, Object> parsedFile = new HashMap<>();
+        try {
+            parsedFile = objectMapper.readValue(yamlFile, new TypeReference<>() { });
+        } catch (Exception e) {
+            System.out.println("Невалидный yaml");
+        }
+        return parsedFile;
     }
 }
