@@ -14,6 +14,7 @@ public class Plain {
         List<String> formatedString = new ArrayList<>();
         for (var i = 0; i < difference.size(); i++) {
             if (difference.get(i).lineIndicator().equals(DELETED)
+                    && i < difference.size() - 1
                     && difference.get(i).key().equals(difference.get(i + 1).key())) {
                 formatedString.add("Property '" + difference.get(i).key() + "' was updated. From "
                         + formatValue(difference.get(i).value()) + " to "
