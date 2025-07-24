@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.concurrent.Callable;
 
 import static hexlet.code.Differ.generate;
+import static hexlet.code.Parser.readFile;
 
 
 @Command(
@@ -35,6 +36,12 @@ public class App implements Callable<Integer> {
 
     @Override
     public Integer call() throws Exception {
+        if (format.equals("json") || format.equals("yaml") || format.equals("yml")) {
+            System.out.println(readFile(filepath1));
+            System.out.println(readFile(filepath2));
+            return 0;
+        }
+
         Map<String, Object> previousFile = Parser.parse(filepath1);
         Map<String, Object> currentFile = Parser.parse(filepath2);
 
