@@ -19,10 +19,13 @@ public class Differ {
     //если осталось не проверенное значение, то -
 
     public static String generate(
-            Map<String, Object> previousFile,
-            Map<String, Object> currentFile,
+            String filepath1,
+            String filepath2,
             String formatName
-    ) {
+    ) throws Exception {
+        Map<String, Object> previousFile = Parser.parse(filepath1);
+        Map<String, Object> currentFile = Parser.parse(filepath2);
+
         List<DiffDTO> difference = new ArrayList<>();
 
         for (var currentKeyAndValue : currentFile.entrySet()) {

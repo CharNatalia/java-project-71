@@ -5,7 +5,6 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 
-import java.util.Map;
 import java.util.concurrent.Callable;
 
 import static hexlet.code.Differ.generate;
@@ -42,10 +41,7 @@ public class App implements Callable<Integer> {
             return 0;
         }
 
-        Map<String, Object> previousFile = Parser.parse(filepath1);
-        Map<String, Object> currentFile = Parser.parse(filepath2);
-
-        System.out.println(generate(previousFile, currentFile, format));
+        System.out.println(generate(filepath1, filepath2, format));
         return 0;
     }
 }
