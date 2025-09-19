@@ -9,7 +9,7 @@ import java.util.Objects;
 
 import static hexlet.code.DiffDTO.LineIndicator.ADDED;
 import static hexlet.code.DiffDTO.LineIndicator.DELETED;
-import static hexlet.code.DiffDTO.LineIndicator.NOCHANGES;
+import static hexlet.code.DiffDTO.LineIndicator.UNCHANGED;
 import static hexlet.code.Formatter.format;
 
 public class Differ {
@@ -30,7 +30,7 @@ public class Differ {
             if (!previousFile.containsKey(currentKey)) {
                 difference.add(new DiffDTO(ADDED, currentKey, currentValue));
             } else if (Objects.equals(previousFile.get(currentKey), currentValue)) {
-                difference.add(new DiffDTO(NOCHANGES, currentKey, currentValue));
+                difference.add(new DiffDTO(UNCHANGED, currentKey, currentValue));
             } else {
                 var previousValue = previousFile.get(currentKey);
                 difference.add(new DiffDTO(DELETED, currentKey, previousValue));

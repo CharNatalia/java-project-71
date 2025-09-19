@@ -13,17 +13,17 @@ public class Plain {
     public static String formatAsPlain(List<DiffDTO> difference) {
         List<String> formatedString = new ArrayList<>();
         for (var i = 0; i < difference.size(); i++) {
-            if (difference.get(i).lineIndicator().equals(DELETED)
+            if (difference.get(i).status().equals(DELETED)
                     && i < difference.size() - 1
                     && difference.get(i).key().equals(difference.get(i + 1).key())) {
                 formatedString.add("Property '" + difference.get(i).key() + "' was updated. From "
                         + formatValue(difference.get(i).value()) + " to "
                         + formatValue(difference.get(i + 1).value()));
                 i = i + 1;
-            } else if (difference.get(i).lineIndicator().equals(ADDED)) {
+            } else if (difference.get(i).status().equals(ADDED)) {
                 formatedString.add("Property '" + difference.get(i).key()
                         + "' was added with value: " + formatValue(difference.get(i).value()));
-            } else if (difference.get(i).lineIndicator().equals(DELETED)) {
+            } else if (difference.get(i).status().equals(DELETED)) {
                 formatedString.add("Property '" + difference.get(i).key() + "' was removed");
             }
         }

@@ -27,6 +27,7 @@ public class Parser {
 
     public static String readFile(String filepath) throws Exception {
         Path path = Paths.get(filepath).toAbsolutePath().normalize();
+        System.out.println(path);
         if (!Files.exists(path)) {
             throw new Exception("File '" + path + "' does not exist");
         }

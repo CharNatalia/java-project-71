@@ -34,11 +34,10 @@ public class App implements Callable<Integer> {
 
     @Override
     public Integer call() throws Exception {
-        if (format.isEmpty()) {
-            System.out.println(generate(filepath1, filepath2));
-        } else {
-            System.out.println(generate(filepath1, filepath2, format));
+        if (format == null) {
+            format = "stylish";
         }
+        System.out.println(generate(filepath1, filepath2, format));
         return 0;
     }
 }

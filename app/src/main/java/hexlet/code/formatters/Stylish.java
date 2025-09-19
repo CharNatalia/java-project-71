@@ -8,7 +8,7 @@ public class Stylish {
     public static String formatAsStylish(List<DiffDTO> difference) {
         List<String> formatedString = new java.util.ArrayList<>(difference.stream()
                 .map(line ->
-                        line.lineIndicator().getIndicator() + " "
+                        line.status().getIndicator() + " "
                                 + line.key() + ": "
                                 + line.value()
                 )

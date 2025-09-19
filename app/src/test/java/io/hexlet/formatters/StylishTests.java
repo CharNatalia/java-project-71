@@ -19,7 +19,7 @@ public class StylishTests {
         list.add(new DiffDTO(DiffDTO.LineIndicator.ADDED, "key3", "text"));
         list.add(new DiffDTO(DiffDTO.LineIndicator.DELETED, "key4", true));
         list.add(new DiffDTO(DiffDTO.LineIndicator.ADDED, "key4", null));
-        list.add(new DiffDTO(DiffDTO.LineIndicator.NOCHANGES, "key5", 1));
+        list.add(new DiffDTO(DiffDTO.LineIndicator.UNCHANGED, "key5", 1));
 
         var expected = """
                 {
